@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 453754b42f8e0f647b10024fe9de477e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainCam: {instanceID: 0}
+  - placeableObjectPrefab: {fileID: 4561189320751639476, guid: 177a3a9fd1eb1a842b6f5f113c4c87be,
+      type: 3}
+  - placeableObjectPrefab_holo: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
