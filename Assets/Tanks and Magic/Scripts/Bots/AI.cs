@@ -11,13 +11,15 @@ public class AI : MonoBehaviourPunCallbacks
     public LayerMask whatIsGround;
     public LayerMask whatIsPurpleEnemy;
     public LayerMask whatIsGreenEnemy;
+    private LayerMask layer;
 
     public bool isTower = false;
-    private GameObject[] enemies;
+    private List<GameObject> enemies = new List<GameObject>();
 
     private Transform enemyPosition;
 
     private bool purpleBot = false;
+    private bool lobbyBot = false;
 
     [Header("Patrolling")]
     //Patrolling
@@ -50,6 +52,11 @@ public class AI : MonoBehaviourPunCallbacks
         {
             purpleBot = true;
         }
+
+        if (gameObject.CompareTag("LobbyBot"))
+        {
+            lobbyBot = true;
+        }
     }
 
     private void Update()
@@ -59,6 +66,12 @@ public class AI : MonoBehaviourPunCallbacks
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPurpleEnemy);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPurpleEnemy);
+        }
+        else if (lobbyBot)
+        {
+            layer = whatIsGreenEnemy | whatIsPurpleEnemy;
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, layer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
         }
         else
         {
@@ -110,7 +123,10 @@ public class AI : MonoBehaviourPunCallbacks
 
     private void SearchWalkPoint()
     {
-        walkPoint = GetClosestEnemy().transform.position;
+        if (GetClosestEnemy())
+        {
+            walkPoint = GetClosestEnemy().transform.position;
+        }
 
         if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
@@ -154,15 +170,20 @@ public class AI : MonoBehaviourPunCallbacks
 
     GameObject GetClosestEnemy()
     {
+        if (lobbyBot)
+        {
+            enemies.AddRange(FindGameObjectsWithTags("GreenTank", "GreenBot"));
+            enemies.AddRange(FindGameObjectsWithTags("PurpleTank", "PurpleBot"));
+        }
         if (purpleBot)
         {
-            enemies = FindGameObjectsWithTags("GreenTank", "GreenBot");
+            enemies.AddRange(FindGameObjectsWithTags("GreenTank", "GreenBot"));
         }
-        else enemies = FindGameObjectsWithTags("PurpleTank", "PurpleBot");
+        else enemies.AddRange(FindGameObjectsWithTags("PurpleTank", "PurpleBot"));
 
         // If no enemies found at all directly return nothing
         // This happens if there simply is no object tagged "Enemy" in the scene
-        if (enemies.Length == 0)
+        if (enemies.Count == 0)
         {
             return null;
         }
@@ -170,7 +191,7 @@ public class AI : MonoBehaviourPunCallbacks
         GameObject closest;
 
         // If there is only exactly one anyway skip the rest and return it directly
-        if (enemies.Length == 1)
+        if (enemies.Count == 1)
         {
             closest = enemies[0];
             return closest;

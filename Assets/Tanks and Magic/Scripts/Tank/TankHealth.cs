@@ -126,6 +126,12 @@ namespace TankScripts
 
             if (gameObject.tag != "PurpleBot" && gameObject.tag != "GreenBot" && photonView.IsMine)
             {
+                if (gameObject.tag == "LobbyBot")
+                {
+                    DestroyTheTank();
+                    return;
+                }
+
                 GameHandler gameHandler = GameObject.Find("GameHandler").GetComponent<GameHandler>();
                 if (gameObject.CompareTag("GreenTank"))
                 {
@@ -136,10 +142,17 @@ namespace TankScripts
                     gameHandler.Respawn("purple");
                 }
             }
+
+            
         }
 
         public void DestroyTheTank()
         {
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Lobby"))
+            {
+                Altar.minionCount -= 1;
+            }
+
             if (photonView.IsMine)
             {
                 PhotonNetwork.Destroy(this.gameObject);

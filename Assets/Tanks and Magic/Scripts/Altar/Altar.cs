@@ -26,6 +26,7 @@ public class Altar : MonoBehaviour
     [Header("SpawnMinion")]
     public GameObject minionPrefab;
     public GameObject minionSpawnPoint;
+    public GameObject[] minionSpawnPoints;
 
     [Header("Crystals")]
     public GameObject crystal1;
@@ -33,8 +34,16 @@ public class Altar : MonoBehaviour
     public GameObject crystal3;
     public GameObject crystal4;
 
+    public static int minionCount = 0;
+
     private void Start()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Lobby"))
+        {
+            InvokeRepeating("SpawnWave", 5f, 30f);
+            return;
+        }
+
         crystal1.SetActive(true);
         crystal2.SetActive(true);
         crystal3.SetActive(true);
@@ -58,6 +67,11 @@ public class Altar : MonoBehaviour
 
     private void Update()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Lobby"))
+        {
+            return;
+        }
+
         damagedHealthShrinkTimer -= Time.deltaTime;
         if(damagedHealthShrinkTimer < 0)
         {
@@ -252,14 +266,34 @@ public class Altar : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
-            yield return new WaitForSeconds(1f);
-            PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
-            yield return new WaitForSeconds(1f);
-            PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
-            yield return new WaitForSeconds(1f);
-            PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
-            yield return new WaitForSeconds(1f);
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Lobby"))
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if(minionCount > 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        minionCount++;
+                        minionSpawnPoint = minionSpawnPoints[Random.Range(0, minionSpawnPoints.Length - 1)];
+                        PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
+                    }
+                    yield return new WaitForSeconds(1f);
+                }
+                
+            } else
+            {
+                PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
+                yield return new WaitForSeconds(1f);
+                PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
+                yield return new WaitForSeconds(1f);
+                PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
+                yield return new WaitForSeconds(1f);
+                PhotonNetwork.InstantiateRoomObject(minionPrefab.name, minionSpawnPoint.transform.position, minionSpawnPoint.transform.rotation);
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

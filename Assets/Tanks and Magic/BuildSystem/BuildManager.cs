@@ -29,7 +29,7 @@ public class BuildManager : MonoBehaviour
         }
         else buildCooldownIcon = GameObject.Find("BuildSystem").GetComponent<UnityEngine.UI.Image>();
 
-        if (Input.GetKeyDown(KeyCode.E) && !buildSystem.isBuilding && buildCooldown <= 0 && !Chat.ChatInputField.GetComponent<UnityEngine.UI.Mask>().showMaskGraphic)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !buildSystem.isBuilding && buildCooldown <= 0 && !Chat.ChatInputField.GetComponent<UnityEngine.UI.Mask>().showMaskGraphic)
         {
             buildCooldown = coolDown;
             buildSystem.NewBuild(foundation);

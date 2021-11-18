@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using ExitGames.Client.Photon;
 
@@ -36,6 +37,8 @@ namespace TankScripts
 
         [HideInInspector] public bool isTowerShell = false;
 
+        private int LobbyBotBulletLifeTime = 0;
+
         private void Start()
         {
             if (GameObject.FindGameObjectWithTag("ScreenShake") != null) {
@@ -47,6 +50,8 @@ namespace TankScripts
                 int rand = Random.Range(2, 7);
                 photonView.RPC("SetDamage", RpcTarget.AllBuffered, rand);
             }
+
+            StartCoroutine(Fade(0.2f));
         }
 
         private void Update()
@@ -79,6 +84,11 @@ namespace TankScripts
                 return;
             }
 
+            if (other.tag == "LobbyBot" && gameObject.tag == "LobbyBotBullet")         //teammate can't damage (TankShooting 51, AIShoot 19)
+            {
+                return;
+            }
+
             if (other.tag.Contains("Bullet") && gameObject.tag.Contains("Bullet")) //if the object are bullets don't collide with each other
             {
                 return;
@@ -92,7 +102,8 @@ namespace TankScripts
             if (ricochet && other.tag != "PurpleBot" && other.tag != "GreenBot" 
                 && other.tag != "PurpleBotBullet" && other.tag != "GreenBotBullet" && other.tag != "PurpleTank"
                 && other.tag != "GreenTank" && other.tag != "GreenAltar"
-                && other.tag != "PurpleAltar" && other.tag != "Heal")
+                && other.tag != "PurpleAltar" && other.tag != "Heal"
+                && other.tag != "LobbyBot")
             {
                 if (photonView.IsMine)
                 {
@@ -106,6 +117,12 @@ namespace TankScripts
 
             if (photonView.IsMine)
             {
+                if (other.gameObject.CompareTag("LobbyBot") && !gameObject.CompareTag("LobbyBotBullet"))
+                {
+                    damage = 1f;
+                    other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
+                }
+
                 if (!SceneManager.GetActiveScene().name.Equals("Lobby"))
                 {
                     if(targetHealth == null)
@@ -251,6 +268,31 @@ namespace TankScripts
             }
         }
 
+        private IEnumerator Fade(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            Color color = GetComponent<MeshRenderer>().material.color;
+            GetComponent<MeshRenderer>().material.color = new Color(color.r, color.g, color.b, color.a - 0.1f);
+            GetComponent<TrailRenderer>().material.color = new Color(color.r, color.g, color.b, color.a - 0.1f);
+            GetComponent<Light>().intensity -= 0.1f;
+
+            if (gameObject.CompareTag("LobbyBotBullet")) //destory the bullet after the bot dies
+            {
+                if(LobbyBotBulletLifeTime > 10)
+                {
+                    PhotonNetwork.Destroy(gameObject);
+                } else LobbyBotBulletLifeTime++;
+            }
+
+            StartCoroutine(Fade(delay));
+        }
+
+        private void OnDestroy()
+        {
+            StopCoroutine(nameof(Fade));
+        }
+
         [PunRPC]
         private void Ricochet()
         {
@@ -320,7 +362,7 @@ namespace TankScripts
 
             if (killer && !killer.CompareTag("PurpleBot") && !killer.CompareTag("GreenBot"))
             {
-                Hashtable hash = new Hashtable();
+                ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
                 killsofPlayer = System.Convert.ToInt32(killer.GetComponent<PhotonView>().Owner.CustomProperties["Kills"]);
                 hash.Add("Kills", killsofPlayer + 1);
                 killer.GetComponent<PhotonView>().Owner.SetCustomProperties(hash);

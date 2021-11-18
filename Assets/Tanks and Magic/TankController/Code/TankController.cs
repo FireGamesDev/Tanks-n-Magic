@@ -14,6 +14,8 @@ namespace LevDev
         [Header("Movement Properties")]
         public float tankSpeed = 15f;
         public float tankRotationSpeed = 20f;
+        private float minTankSpeed;
+        private float maxTankSpeed;
         Vector3 movement;
 
         [Header("Turret Properties")]
@@ -73,6 +75,9 @@ namespace LevDev
             m_OriginalPitch = m_MovementAudio.pitch;
 
             LightsOn();
+
+            maxTankSpeed = tankSpeed;
+            minTankSpeed = tankSpeed - 7.5f;
         }
 
         private void Update()
@@ -99,10 +104,14 @@ namespace LevDev
 
         void FixedUpdate()
         {
-            if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(2) || Input.GetKey(KeyCode.Mouse1))
             {
-                return;
-            }
+                tankSpeed = minTankSpeed;
+                if (Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(2))
+                {
+                    tankSpeed -= 4f;
+                }
+            } else tankSpeed = maxTankSpeed;
 
             if (photonView.IsMine)
             {
@@ -141,47 +150,47 @@ namespace LevDev
 
         private void Turn()
         {
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 135f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 45f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 225f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 315f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)))
             {
                 return;
             }
-            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
+            if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
             {
                 return;
             }
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 90f, 0f), tankRotationSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), tankRotationSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 270f, 0f), tankRotationSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 180f, 0f), tankRotationSpeed * Time.deltaTime));
             }
@@ -189,47 +198,47 @@ namespace LevDev
 
         private void TurnGreen()
         {
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -45f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -135f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -315f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -225f, 0f), tankRotationSpeed * Time.deltaTime));
                 return;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)))
             {
                 return;
             }
-            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
+            if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
             {
                 return;
             }
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -90f, 0f), tankRotationSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -180f, 0f), tankRotationSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -270f, 0f), tankRotationSpeed * Time.deltaTime));
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), tankRotationSpeed * Time.deltaTime));
             }
@@ -237,7 +246,11 @@ namespace LevDev
 
         private void Move()
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            if (
+                Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)
+                || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) 
+                || Input.GetKey(KeyCode.RightArrow)
+                )
             {
                 rb.MovePosition(transform.position - movement * tankSpeed * Time.deltaTime);
 

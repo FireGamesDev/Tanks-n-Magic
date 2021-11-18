@@ -127,7 +127,7 @@ namespace TankScripts
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2))
                 {
                     if (shootCooldown <= 0)
                     {
