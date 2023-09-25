@@ -110,10 +110,12 @@ namespace LevDev
                 }
             }
 
+            /*
             if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse1))
             {
                 return;
             }
+            */
 
             if (photonView.IsMine)
             {
