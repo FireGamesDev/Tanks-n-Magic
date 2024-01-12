@@ -77,6 +77,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void LoadGame()
     {
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        StartCoroutine(SceneTransitionToGame());
+
+        return;
+
         if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;

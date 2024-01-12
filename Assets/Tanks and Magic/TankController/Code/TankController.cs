@@ -12,7 +12,9 @@ namespace LevDev
         #region Variables
 
         [Header("Movement Properties")]
-        public float tankSpeed = 15f;
+        private float tankSpeed = 15f;
+        public float tankSpeedBase = 15f;
+        public float tankSpeedShoot = 15f;
         public float tankRotationSpeed = 20f;
         Vector3 movement;
 
@@ -110,12 +112,19 @@ namespace LevDev
                 }
             }
 
-            /*
+            float speedTransitionRate = 0.5f;
+
             if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse1))
             {
-                return;
+                // Transition to the shoot speed
+                tankSpeed = Mathf.Lerp(tankSpeed, tankSpeedShoot, Time.deltaTime * speedTransitionRate);
             }
-            */
+            else
+            {
+                // Transition back to the base speed
+                tankSpeed = Mathf.Lerp(tankSpeed, tankSpeedBase, Time.deltaTime * speedTransitionRate);
+            }
+
 
             if (photonView.IsMine)
             {
@@ -252,7 +261,8 @@ namespace LevDev
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
-                rb.MovePosition(transform.position - movement * tankSpeed * Time.deltaTime);
+                Vector3 normalizedMovement = movement.normalized;
+                rb.MovePosition(transform.position - normalizedMovement * tankSpeed * Time.deltaTime);
 
                 LightsOn();
             } else LightsOff();

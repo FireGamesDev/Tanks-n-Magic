@@ -15,7 +15,7 @@ D:/UnityProjects/Tanks-n-Magic
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-56378
+51051
 Successfully changed project path to: D:/UnityProjects/Tanks-n-Magic
 D:/UnityProjects/Tanks-n-Magic
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,11 +49,11 @@ D:/UnityProjects/Tanks-n-Magic
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [1916] Host "[IP] 192.168.137.60 [Port] 0 [Flags] 2 [Guid] 1694056219 [EditorId] 1694056219 [Version] 1048832 [Id] WindowsEditor(7,LEVI_ASUS) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [23636] Host "[IP] 192.168.165.181 [Port] 0 [Flags] 2 [Guid] 1144744993 [EditorId] 1144744993 [Version] 1048832 [Id] WindowsEditor(7,LEVI_ASUS) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [1916] Host "[IP] 192.168.137.60 [Port] 0 [Flags] 2 [Guid] 1694056219 [EditorId] 1694056219 [Version] 1048832 [Id] WindowsEditor(7,LEVI_ASUS) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [23636] Host "[IP] 192.168.165.181 [Port] 0 [Flags] 2 [Guid] 1144744993 [EditorId] 1144744993 [Version] 1048832 [Id] WindowsEditor(7,LEVI_ASUS) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 7.45 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 8.53 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.0f1 (fb119bb0b476)
 [Subsystems] Discovering subsystems at path D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/Resources/UnitySubsystems
@@ -69,49 +69,49 @@ Initialize mono
 Mono path[0] = 'D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56208
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56844
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: D:/Applications/Unity/Editors/2022.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002880 seconds.
-- Loaded All Assemblies, in  0.266 seconds
+Registered in 0.003467 seconds.
+- Loaded All Assemblies, in  0.293 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 203 ms
+Android Extension - Scanning For ADB Devices 240 ms
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.557 seconds
-Domain Reload Profiling: 823ms
-	BeginReloadAssembly (62ms)
+- Finished resetting the current domain, in  0.539 seconds
+Domain Reload Profiling: 832ms
+	BeginReloadAssembly (69ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (27ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (44ms)
-	LoadAllAssembliesAndSetupDomain (121ms)
-		LoadAssemblies (62ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (132ms)
+		LoadAssemblies (69ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (118ms)
-			TypeCache.Refresh (117ms)
-				TypeCache.ScanAssembly (107ms)
+		AnalyzeDomain (129ms)
+			TypeCache.Refresh (128ms)
+				TypeCache.ScanAssembly (118ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (557ms)
+	FinalizeReload (539ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (504ms)
+		SetupLoadedEditorAssemblies (489ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (303ms)
-			SetLoadedEditorAssemblies (2ms)
+			InitializePlatformSupportModulesInManaged (355ms)
+			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (73ms)
-			ProcessInitializeOnLoadMethodAttributes (124ms)
+			ProcessInitializeOnLoadAttributes (85ms)
+			ProcessInitializeOnLoadMethodAttributes (44ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -120,53 +120,53 @@ Domain Reload Profiling: 823ms
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  0.605 seconds
-Refreshing native plugins compatible for Editor in 4.17 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.847 seconds
+Refreshing native plugins compatible for Editor in 3.96 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.831 seconds
-Domain Reload Profiling: 1436ms
-	BeginReloadAssembly (100ms)
+- Finished resetting the current domain, in  0.878 seconds
+Domain Reload Profiling: 1726ms
+	BeginReloadAssembly (106ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (22ms)
-	RebuildCommonClasses (27ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (31ms)
-	LoadAllAssembliesAndSetupDomain (437ms)
-		LoadAssemblies (216ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (649ms)
+		LoadAssemblies (322ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (265ms)
-			TypeCache.Refresh (235ms)
-				TypeCache.ScanAssembly (219ms)
-			ScanForSourceGeneratedMonoScriptInfo (23ms)
-			ResolveRequiredComponents (8ms)
-	FinalizeReload (831ms)
+		AnalyzeDomain (375ms)
+			TypeCache.Refresh (332ms)
+				TypeCache.ScanAssembly (307ms)
+			ScanForSourceGeneratedMonoScriptInfo (33ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (879ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (586ms)
+		SetupLoadedEditorAssemblies (686ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (18ms)
-			SetLoadedEditorAssemblies (3ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (68ms)
-			ProcessInitializeOnLoadAttributes (368ms)
-			ProcessInitializeOnLoadMethodAttributes (128ms)
-			AfterProcessingInitializeOnLoad (1ms)
+			BeforeProcessingInitializeOnLoad (70ms)
+			ProcessInitializeOnLoadAttributes (452ms)
+			ProcessInitializeOnLoadMethodAttributes (140ms)
+			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (73ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 4.60 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 8.50 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5273 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 145 unused Assets / (1.6 MB). Loaded Objects now: 5702.
-Memory consumption went from 245.7 MB to 244.1 MB.
-Total: 9.064600 ms (FindLiveObjects: 0.464900 ms CreateObjectMapping: 0.208900 ms MarkObjects: 7.772100 ms  DeleteObjects: 0.617500 ms)
+Unloading 5860 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 152 unused Assets / (3.3 MB). Loaded Objects now: 6279.
+Memory consumption went from 264.4 MB to 261.0 MB.
+Total: 13.434400 ms (FindLiveObjects: 0.635300 ms CreateObjectMapping: 0.944500 ms MarkObjects: 10.477900 ms  DeleteObjects: 1.375000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -182,52 +182,172 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 447226.177154 seconds.
-  path: Assets/Tanks and Magic/Models/BustedTank.fbx
-  artifactKey: Guid(8c6d26fe262194242becdec17209d306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tanks and Magic/Models/BustedTank.fbx using Guid(8c6d26fe262194242becdec17209d306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c089248e8b51adb7adc0fadcd86abd6') in 0.005263 seconds
-Number of updated asset objects reloaded before import = 6
-Number of asset objects unloaded after import = 6
-========================================================================
-Received Import Request.
-  Time since last request: 0.005108 seconds.
-  path: Assets/Tanks and Magic/Materials/Tank_lights.mat
-  artifactKey: Guid(e27da7e497a026e47a186b1f9cc0126c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tanks and Magic/Materials/Tank_lights.mat using Guid(e27da7e497a026e47a186b1f9cc0126c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d4bce4287d3319f9c4bcbf27c932ff6') in 0.001994 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
+  Time since last request: 935614.412632 seconds.
   path: Assets/Photon/PhotonUnityNetworking/Resources/Tank_purple.prefab
   artifactKey: Guid(b1954d6ad9d42fb46af78b6ee7c5aba6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Photon/PhotonUnityNetworking/Resources/Tank_purple.prefab using Guid(b1954d6ad9d42fb46af78b6ee7c5aba6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '567b7efa8a42313f80bee37ce66ecf9c') in 0.118468 seconds
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Tank_purple.prefab using Guid(b1954d6ad9d42fb46af78b6ee7c5aba6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe69e37a38afbce29cd61eba766d7f0b') in 0.294159 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 421
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Tanks and Magic/Models/Materials/TankColour.mat
-  artifactKey: Guid(2162b57fe167d0843a12616ca492200d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tanks and Magic/Models/Materials/TankColour.mat using Guid(2162b57fe167d0843a12616ca492200d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '870bab4ee9dc597dbfd03b769b15a0fa') in 0.001018 seconds
+  Time since last request: 13.886339 seconds.
+  path: Assets/Tanks and Magic/Prefabs/Altars/Altar_red.prefab
+  artifactKey: Guid(8a6a239abbbce3f489ec4ba9f5c7dcd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tanks and Magic/Prefabs/Altars/Altar_red.prefab using Guid(8a6a239abbbce3f489ec4ba9f5c7dcd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15eb39c0e98e4520b328221c665552e4') in 0.018108 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 130
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Tanks and Magic/Materials/Crystal_red.mat
+  artifactKey: Guid(82a73be7a77800145bf13feb1b9be863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tanks and Magic/Materials/Crystal_red.mat using Guid(82a73be7a77800145bf13feb1b9be863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6369d7d4916a413d45afeed38c6ba3ca') in 0.001071 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 0.631700 seconds.
-  path: Assets/Tanks and Magic/Models/Materials/TankGrey.mat
-  artifactKey: Guid(3df12366f270f75489fc1170209a58cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tanks and Magic/Models/Materials/TankGrey.mat using Guid(3df12366f270f75489fc1170209a58cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '846180e34637a024d2aa14623a8ac789') in 0.001533 seconds
+  Time since last request: 0.000014 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Effect_Green.prefab
+  artifactKey: Guid(579ad487afa18af43a06cd5b8ffb8c60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Effect_Green.prefab using Guid(579ad487afa18af43a06cd5b8ffb8c60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af5e0dfa0515bf358091883f56ab0ba3') in 0.030712 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Charged_Shell_Green.prefab
+  artifactKey: Guid(75670ce4f60ba014caa1f067ba8adf5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Charged_Shell_Green.prefab using Guid(75670ce4f60ba014caa1f067ba8adf5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ececaf31ee2e8d91edf9e86f7ff3013f') in 0.002728 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 26
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/BotBulletPlayer_Red.prefab
+  artifactKey: Guid(dff74263c3f22144ab577cf6af4b2557) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/BotBulletPlayer_Red.prefab using Guid(dff74263c3f22144ab577cf6af4b2557) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '841c6e413f5bc44e4c1848d81d466f98') in 0.003075 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 24
 ========================================================================
 Received Import Request.
   Time since last request: 0.000018 seconds.
-  path: Assets/Tanks and Magic/GameIcon/Tanks and Magic Icon.psd
-  artifactKey: Guid(24e9aaa4cc06cef49a8f0aea6ee7b409) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tanks and Magic/GameIcon/Tanks and Magic Icon.psd using Guid(24e9aaa4cc06cef49a8f0aea6ee7b409) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f32e8fe9182f28a2fc1d062f0b93bcd1') in 0.001933 seconds
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Foundation_Prewiew.prefab
+  artifactKey: Guid(35a74664a39236041bf415302d034cd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Foundation_Prewiew.prefab using Guid(35a74664a39236041bf415302d034cd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '498b976b26fec1bcc15cd7b18f6abe9b') in 0.005581 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 114
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Tanks and Magic/Materials/Grey.mat
+  artifactKey: Guid(c4c5f95d06932564c8672b4bafeb1b28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tanks and Magic/Materials/Grey.mat using Guid(c4c5f95d06932564c8672b4bafeb1b28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d412b0ba0fa3e20dae0a8540d031421') in 0.001753 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Tanks and Magic/Materials/Light_red.mat
+  artifactKey: Guid(ed2eae829fa512b40a92bd62f1c4c22b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tanks and Magic/Materials/Light_red.mat using Guid(ed2eae829fa512b40a92bd62f1c4c22b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61677083cb909303081992f32394539f') in 0.001014 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Tanks and Magic/Materials/Light_green.mat
+  artifactKey: Guid(3959eaa558acc9341bbd4471ffe9f16c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tanks and Magic/Materials/Light_green.mat using Guid(3959eaa558acc9341bbd4471ffe9f16c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3acf3cf97712ceb699e757abef5e8e9c') in 0.000911 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Tanks and Magic/Materials/Light_walls_green.mat
+  artifactKey: Guid(cb778baefe9faf1458101b396dd0e9c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tanks and Magic/Materials/Light_walls_green.mat using Guid(cb778baefe9faf1458101b396dd0e9c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1db75e1ee34fa73e4cee212bf2b6b4d7') in 0.000919 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Foundation_Prefab.prefab
+  artifactKey: Guid(6853510a28db7744cbdf3f0d89d8a2f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Foundation_Prefab.prefab using Guid(6853510a28db7744cbdf3f0d89d8a2f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a461da52dfbea7bcd0f66362b598f7b9') in 0.003072 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 97
+========================================================================
+Received Import Request.
+  Time since last request: 3.921269 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Bot.prefab
+  artifactKey: Guid(3c744cc9d79ca8e419be89e3ade648f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Bot.prefab using Guid(3c744cc9d79ca8e419be89e3ade648f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '883aa85dcd09d09221cae916b4b5ba49') in 0.019815 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 124
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/PhaseLast.prefab
+  artifactKey: Guid(7f3b0072e4e7334409b44e6400912e06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/PhaseLast.prefab using Guid(7f3b0072e4e7334409b44e6400912e06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cd93d83f64a660585a07b69ba67d754') in 0.004447 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 57
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/PurpleMinion.prefab
+  artifactKey: Guid(6c16aa38a50d76548aeb268bcf09ebe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/PurpleMinion.prefab using Guid(6c16aa38a50d76548aeb268bcf09ebe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cb63411527fb8513cec0ecbbeb1db9d') in 0.010345 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 124
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Effect_Blue.prefab
+  artifactKey: Guid(d6e82dc7316fc3d4092cfb05226663b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Effect_Blue.prefab using Guid(d6e82dc7316fc3d4092cfb05226663b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '746b821838e248471549214719352e63') in 0.002815 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/KillListingWithImage.prefab
+  artifactKey: Guid(41624d92e25e6bb48b6ad3612de75ba6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/KillListingWithImage.prefab using Guid(41624d92e25e6bb48b6ad3612de75ba6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '986b47160625b0637a26cfee26a2f3dd') in 0.011054 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 30
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Effect_Charged.prefab
+  artifactKey: Guid(71ad0bb9149f7c94fb93e2dcf4775d3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Effect_Charged.prefab using Guid(71ad0bb9149f7c94fb93e2dcf4775d3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2451026d789236bd93ab479d4e32dd84') in 0.002210 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Purple_Shell.prefab
+  artifactKey: Guid(008ecb1b70bec724fa2cd34255b0d8f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Purple_Shell.prefab using Guid(008ecb1b70bec724fa2cd34255b0d8f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed247a7f72d541d069802ab7bcc494bd') in 0.003267 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 24
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/SmokePrefab_BigPurple.prefab
+  artifactKey: Guid(d8ae1b7a289d50f4a88e85bb75d0b786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/SmokePrefab_BigPurple.prefab using Guid(d8ae1b7a289d50f4a88e85bb75d0b786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73aa435d07264d3ef656ec97b5491590') in 0.002002 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Photon/PhotonUnityNetworking/Resources/Tower_Shell_Green.prefab
+  artifactKey: Guid(cf75d769a0cd97c49b123ea4237cfa56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Photon/PhotonUnityNetworking/Resources/Tower_Shell_Green.prefab using Guid(cf75d769a0cd97c49b123ea4237cfa56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd51bb67d03635d9ed734dbe76a4b33d') in 0.003684 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 25
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: Az I/O mûvelet megszakítva. (Egy folyamat véget ért, vagy egy alkalmazás megszakította az I/O mûveletet.)
 AssetImportWorker is now disconnected from the server
