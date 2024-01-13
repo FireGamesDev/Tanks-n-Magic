@@ -153,7 +153,7 @@ public class GameHandler : MonoBehaviourPunCallbacks
         {
             transitionAnim.SetTrigger("FadeIn");
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.8f);
         SceneManager.LoadScene("Menu");
     }
 

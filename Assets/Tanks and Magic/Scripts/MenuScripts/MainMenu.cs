@@ -21,7 +21,7 @@ namespace Settings
             {
                 transitionAnim.SetTrigger("FadeIn");
             }
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(.8f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 

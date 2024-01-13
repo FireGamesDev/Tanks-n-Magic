@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject playMenu = null;
     [SerializeField] private GameObject createButton = null;
     [SerializeField] private GameObject noRooms = null;
+    [SerializeField] private GameObject connectingScreen = null;
 
     public Animator transitionAnim;
 
@@ -117,7 +118,8 @@ public class MenuController : MonoBehaviourPunCallbacks
             StartCoroutine("HideErrorMessage");
             return;
         }
-        createButton.SetActive(false);
+        //createButton.SetActive(false);
+        connectingScreen.SetActive(true);
         PhotonNetwork.JoinOrCreateRoom(CreateGameInput.text, new RoomOptions() { MaxPlayers = (byte)maxPlayers }, null);
     }
 
@@ -132,7 +134,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         {
             transitionAnim.SetTrigger("FadeIn");
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.8f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
     }
 
@@ -146,6 +148,8 @@ public class MenuController : MonoBehaviourPunCallbacks
         errorText.GetComponent<TMPro.TMP_Text>().text = "Failed to Join: " + message;
         errorText.SetActive(true);
         StartCoroutine("HideErrorMessage");
+
+        connectingScreen.SetActive(false);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -153,6 +157,8 @@ public class MenuController : MonoBehaviourPunCallbacks
         errorText.GetComponent<TMPro.TMP_Text>().text = "Room Creation Failed: " + message;
         errorText.SetActive(true);
         StartCoroutine("HideErrorMessage");
+
+        connectingScreen.SetActive(false);
     }
 
     IEnumerator HideErrorMessage()

@@ -80,8 +80,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         StartCoroutine(SceneTransitionToGame());
 
-        return;
-
+        /*
         if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
@@ -93,6 +92,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             errorMessage.GetComponent<TMPro.TMP_Text>().text = "Minimum 2 Players required to Load Arena!";
             StartCoroutine(HideMessage());
         }
+        */
     }
 
     private IEnumerator SceneTransitionToGame()
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             transitionAnim.SetTrigger("FadeIn");
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.8f);
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("Aram");
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             transitionAnim.SetTrigger("FadeIn");
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.8f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
