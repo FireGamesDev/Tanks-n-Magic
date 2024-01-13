@@ -90,7 +90,7 @@ public class PlayfabLeaderboard : MonoBehaviour
                 //rankSprite = rankingSprites[i];
             }
             i++;
-            bool isLocal = item.DisplayName == PlayerPrefs.GetString("name");
+            bool isLocal = item.DisplayName == PlayerPrefs.GetString("Username");
             row.GetComponent<LeaderboardRow>().SetRow(i, item.DisplayName, item.StatValue, isLocal);
 
             empty.SetActive(false);
@@ -108,7 +108,7 @@ public class PlayfabLeaderboard : MonoBehaviour
         empty.SetActive(true);
 
         List<PlayerLeaderboardEntry> sortedEntries = result.Leaderboard; //.OrderBy(entry => entry.StatValue).ToList();
-        int localPlayerRank = sortedEntries.FindIndex(entry => entry.DisplayName == PlayerPrefs.GetString("name"));
+        int localPlayerRank = sortedEntries.FindIndex(entry => entry.DisplayName == PlayerPrefs.GetString("Username"));
         int rank = 1;
         foreach (var item in sortedEntries)
         {
@@ -119,7 +119,7 @@ public class PlayfabLeaderboard : MonoBehaviour
             {
                 //rankSprite = rankingSprites[rank - 1];
             }
-            bool isLocal = item.DisplayName == PlayerPrefs.GetString("name");
+            bool isLocal = item.DisplayName == PlayerPrefs.GetString("Username");
             int itemRank = isLocal ? localPlayerRank + 1 : rank;
             row.GetComponent<LeaderboardRow>().SetRow(itemRank, item.DisplayName, item.StatValue, isLocal);
             rank++;

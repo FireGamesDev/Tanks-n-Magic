@@ -39,6 +39,16 @@ public class MenuController : MonoBehaviourPunCallbacks
 
         UsernameDisplay.text = PlayerPrefs.GetString("Username", "");
         TitleDisplay.text = PlayerPrefs.GetString("Title", "");
+
+        if (PlayerPrefs.GetString("Username", "") == "")
+        {
+            CreateAccountMenu();
+        }
+    }
+
+    private void CreateAccountMenu()
+    {
+        UsernameMenu.SetActive(true);
     }
 
     public override void OnConnectedToMaster()
