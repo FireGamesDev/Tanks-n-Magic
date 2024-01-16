@@ -49,7 +49,10 @@ public class BuildManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && !buildSystem.isBuilding && buildCooldown <= 0 && !Chat.ChatInputField.GetComponent<UnityEngine.UI.Mask>().showMaskGraphic)
+        bool isPressedDown = Input.GetKeyDown(KeyCode.E);
+        isPressedDown = false;//removing build system for now
+
+        if (isPressedDown && !buildSystem.isBuilding && buildCooldown <= 0 && !Chat.ChatInputField.GetComponent<UnityEngine.UI.Mask>().showMaskGraphic)
         {
             buildCooldown = coolDown;
             buildSystem.NewBuild(foundation);

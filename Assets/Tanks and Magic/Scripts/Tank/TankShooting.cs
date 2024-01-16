@@ -41,6 +41,11 @@ namespace TankScripts
         [SerializeField] public ParticleSystem muzzleFlash = null;
         [SerializeField] public ParticleSystem muzzleFlashRed = null;
 
+        [Header("Mobile")]
+        [SerializeField] private VariableJoystick _shootingJoystick;
+
+        private bool isMobile = false;
+
         private UnityEngine.UI.Image chargedBulletCooldown;
 
         private void Start()
@@ -49,6 +54,8 @@ namespace TankScripts
             {
                 return;
             }
+
+            isMobile = CheckMobile.IsMobile;
 
             canShoot = true;
             shootCooldown = coolDown;
@@ -99,7 +106,15 @@ namespace TankScripts
 
                 shootCooldown -= Time.deltaTime;
 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                HandleInputs();
+            }
+        }
+
+        private void HandleInputs()
+        {
+            if (isMobile)
+            {
+                if (_shootingJoystick.Direction != Vector2.zero)
                 {
                     if (canShoot && shootCooldown <= 0)
                     {
@@ -125,40 +140,68 @@ namespace TankScripts
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    if (canShoot && shootCooldown <= 0)
-                    {
-                        if (reticleAnim)
-                        {
-                            reticleAnim.SetTrigger("isShooting");
-                        }
-                        Fire(false);
-                        m_ShootingAudio.PlayOneShot(shootSFX);
-                        shootCooldown = coolDown;
-                        anotherShoot = true;
-                    }
-                    if (canShoot && anotherShoot && shootCooldown <= coolDown - 0.1f)
-                    {
-                        if (reticleAnim)
-                        {
-                            reticleAnim.SetTrigger("DoubleShoot");
-                        }
-                        Fire(false);
-                        m_ShootingAudio.PlayOneShot(shootSFX);
-                        shootCooldown = coolDown;
-                        anotherShoot = false;
-                    }
-                }
+                return;
+            }
 
-                if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (canShoot && shootCooldown <= 0)
                 {
-                    if (shootCooldown <= 0)
+                    if (reticleAnim)
                     {
-                        ChargeShoot();
-                        m_ShootingAudio.PlayOneShot(chargeShootSFX);
-                        shootCooldown = coolDown;
+                        reticleAnim.SetTrigger("isShooting");
                     }
+                    Fire(true);
+                    m_ShootingAudio.PlayOneShot(shootSFX);
+                    shootCooldown = coolDown;
+                    anotherShoot = true;
+                }
+                if (canShoot && anotherShoot && shootCooldown <= coolDown - 0.1f)
+                {
+                    if (reticleAnim)
+                    {
+                        reticleAnim.SetTrigger("DoubleShoot");
+                    }
+                    Fire(true);
+                    m_ShootingAudio.PlayOneShot(shootSFX);
+                    shootCooldown = coolDown;
+                    anotherShoot = false;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                if (canShoot && shootCooldown <= 0)
+                {
+                    if (reticleAnim)
+                    {
+                        reticleAnim.SetTrigger("isShooting");
+                    }
+                    Fire(false);
+                    m_ShootingAudio.PlayOneShot(shootSFX);
+                    shootCooldown = coolDown;
+                    anotherShoot = true;
+                }
+                if (canShoot && anotherShoot && shootCooldown <= coolDown - 0.1f)
+                {
+                    if (reticleAnim)
+                    {
+                        reticleAnim.SetTrigger("DoubleShoot");
+                    }
+                    Fire(false);
+                    m_ShootingAudio.PlayOneShot(shootSFX);
+                    shootCooldown = coolDown;
+                    anotherShoot = false;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (shootCooldown <= 0)
+                {
+                    ChargeShoot();
+                    m_ShootingAudio.PlayOneShot(chargeShootSFX);
+                    shootCooldown = coolDown;
                 }
             }
         }

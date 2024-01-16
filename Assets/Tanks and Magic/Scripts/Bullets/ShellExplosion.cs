@@ -184,7 +184,7 @@ namespace TankScripts
                             {
                                 if (other.gameObject.CompareTag("PurpleBot"))
                                 {
-                                    return;
+                                    //return; making only one type of bullet
                                 }
                                 other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
                             }
@@ -196,7 +196,7 @@ namespace TankScripts
                             {
                                 if (other.gameObject.CompareTag("GreenBot"))
                                 {
-                                    return;
+                                    //return; making only one type of bullet
                                 }
                                 other.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
                             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using static UnityEngine.AudioSettings;
 
 namespace LevDev
 {
@@ -48,6 +49,12 @@ namespace LevDev
         public GameObject rightTrackLight;
         public GameObject leftTrail;
         public GameObject rightTrail;
+
+        [Header("Mobile")]
+        [SerializeField] private VariableJoystick _movementJoystick;
+        [SerializeField] private VariableJoystick _shootingJoystick;
+
+        private bool isMobile = false;
         #endregion
 
 
@@ -57,10 +64,16 @@ namespace LevDev
         {
             rb = GetComponent<Rigidbody>();
             input = GetComponent<TankInputs>();
+
+            isMobile = CheckMobile.IsMobile;
+
+            _movementJoystick.gameObject.SetActive(isMobile);
+            _shootingJoystick.gameObject.SetActive(isMobile);
         }
 
         private void Start()
         {
+
             if (!photonView.IsMine)
             {
                 reticleTransform.gameObject.SetActive(false);
@@ -75,6 +88,8 @@ namespace LevDev
             m_OriginalPitch = m_MovementAudio.pitch;
 
             LightsOn();
+
+            reticleTransform.gameObject.SetActive(!isMobile);
         }
 
         private void Update()
@@ -95,6 +110,7 @@ namespace LevDev
                     movement.z = Input.GetAxis("Horizontal");
                     movement.x = Input.GetAxis("Vertical");
                 }
+                
             }
             EngineAudio();
         }
@@ -135,12 +151,24 @@ namespace LevDev
 
                 Move();
 
-                if(gameObject.tag == "GreenTank")
+                Vector2 rotation = Vector2.zero;
+
+                if (isMobile)
                 {
-                    TurnGreen();
+                    rotation = _shootingJoystick.Direction.normalized;
+
+                    if (rotation.x == 0 && rotation.y == 0)
+                    {
+                        rotation = _movementJoystick.Direction.normalized;
+                    }
+                }
+
+                if (gameObject.tag == "GreenTank")
+                {
+                    TurnGreen(rotation);
                 } else
                 {
-                    Turn();
+                    Turn(rotation);
                 }
             }
         }
@@ -161,8 +189,13 @@ namespace LevDev
 
         #region Multiplayer synch
 
-        private void Turn()
+        private void Turn(Vector2 rotation)
         {
+            if (isMobile)
+            {
+                rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation.x, rotation.y, 0f), tankRotationSpeed * Time.deltaTime));
+            }
+
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, 135f, 0f), tankRotationSpeed * Time.deltaTime));
@@ -209,8 +242,13 @@ namespace LevDev
             }
         }
 
-        private void TurnGreen()
+        private void TurnGreen(Vector2 rotation)
         {
+            if (isMobile)
+            {
+                rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation.x, rotation.y, 0f), tankRotationSpeed * Time.deltaTime));
+            }
+
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -45f, 0f), tankRotationSpeed * Time.deltaTime));
@@ -259,6 +297,20 @@ namespace LevDev
 
         private void Move()
         {
+            if (isMobile)
+            {
+                movement = _movementJoystick.Direction;
+                Vector3 normalizedMovement = movement.normalized;
+                rb.MovePosition(transform.position - normalizedMovement * tankSpeed * Time.deltaTime);
+
+                if (movement == Vector3.zero)
+                {
+                    LightsOff();
+                } else LightsOn();
+
+                return;
+            }
+
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 Vector3 normalizedMovement = movement.normalized;
@@ -270,6 +322,17 @@ namespace LevDev
 
         private void HandleTurret()
         {
+            if (isMobile)
+            {
+                Vector3 turretLookDir = _shootingJoystick.Direction;
+                turretLookDir.y = 0f;
+
+                finalTurretLookDir = Vector3.Lerp(finalTurretLookDir, turretLookDir, Time.deltaTime * turretLagSpeed);
+                turretTransform.rotation = Quaternion.LookRotation(finalTurretLookDir);
+
+                return;
+            }
+
             if (turretTransform)
             {
                 Vector3 turretLookDir = input.ReticlePosition - turretTransform.position;
