@@ -73,12 +73,12 @@ namespace LevDev
 
         private void Start()
         {
-
             if (!photonView.IsMine)
             {
-                reticleTransform.gameObject.SetActive(false);
                 return;
             }
+
+            reticleTransform.gameObject.SetActive(false);
 
             // The axes names are based on player number.
             m_MovementAxisName = "Vertical";

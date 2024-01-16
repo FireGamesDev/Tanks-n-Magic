@@ -158,6 +158,8 @@ public class Player : MonoBehaviour
                 chatInputField.GetComponent<Mask>().showMaskGraphic = false;
             }
 
+            if (GameObject.Find("ChatManager") == null) return;
+
             chatFeed = GameObject.Find("ChatFeed");
             chatExit = GameObject.Find("HowToExit");
 

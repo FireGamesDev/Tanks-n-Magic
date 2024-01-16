@@ -14,6 +14,7 @@ namespace TankScripts
         public float lifeTime;
         private float shootCooldown;
         public float coolDown;
+        public float coolDownCharged;
         private bool anotherShoot;                  //Makes the double shoot possible
         public bool canShoot;                // if the player pauses the game can't shoot, and if Build
         public AudioClip shootSFX;
@@ -57,13 +58,23 @@ namespace TankScripts
 
             isMobile = CheckMobile.IsMobile;
 
+            CheckMobile.Instance.chargedBulletButton.onClick.AddListener(delegate { ShootChargedShot(); });
+
             canShoot = true;
             shootCooldown = coolDown;
             anotherShoot = false;
 
             TurretLightOn();
 
-            chargedBulletCooldown = GameObject.Find("ChargeBullet").GetComponent<UnityEngine.UI.Image>();
+            if (GameObject.Find("ChargeBullet") == null)
+            {
+                chargedBulletCooldown = GameObject.Find("ChargeBulletButton").GetComponent<UnityEngine.UI.Image>();
+            }
+            else
+            {
+                chargedBulletCooldown = GameObject.Find("ChargeBullet").GetComponent<UnityEngine.UI.Image>();
+            }
+            
             chatInputMask = Chat.ChatInputField.GetComponent<UnityEngine.UI.Mask>();
         }
 
@@ -197,12 +208,17 @@ namespace TankScripts
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (shootCooldown <= 0)
-                {
-                    ChargeShoot();
-                    m_ShootingAudio.PlayOneShot(chargeShootSFX);
-                    shootCooldown = coolDown;
-                }
+                ShootChargedShot();
+            }
+        }
+
+        private void ShootChargedShot()
+        {
+            if (shootCooldown <= 0)
+            {
+                ChargeShoot();
+                m_ShootingAudio.PlayOneShot(chargeShootSFX);
+                shootCooldown = coolDownCharged;
             }
         }
 
