@@ -1,3 +1,4 @@
+using PlayFab.ExperimentationModels;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -31,6 +32,8 @@ public class CheckMobile : MonoBehaviour
 
     private void Start()
     {
+        IsMobile = CheckIfWebGLIsMobile();
+
         chat.SetActive(!IsMobile);
         chargedBulletDisplay.SetActive(!IsMobile);
         chargedBulletButton.gameObject.SetActive(IsMobile);

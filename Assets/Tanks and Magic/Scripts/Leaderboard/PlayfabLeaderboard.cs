@@ -21,11 +21,12 @@ public class PlayfabLeaderboard : MonoBehaviour
     private void OnEnable()
     {
         LeaderboardStatisticName = "MainLeaderboard";
-
+        PlayerPrefs.SetInt("Kills", 20);
         if (PlayerPrefs.GetInt("Kills", 0) > 0)
         {
             SubmitScore(PlayerPrefs.GetInt("Kills", 0));
         }
+        SetLeaderboard();
     }
 
     public void SetLeaderboard()
