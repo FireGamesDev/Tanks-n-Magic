@@ -15,8 +15,8 @@ public class PlayfabAccountDeletion : MonoBehaviour
 
     public void DeleteUserAccount()
     {
-        string apiEndpoint = "https://9c290.playfabapi.com/Admin/DeleteMasterPlayerAccount";
         GetPlayFabIdAndDeleteAccount(apiEndpoint);
+        PlayFabClientAPI.ForgetAllCredentials();
     }
     private void GetPlayFabIdAndDeleteAccount(string apiEndpoint)
     {

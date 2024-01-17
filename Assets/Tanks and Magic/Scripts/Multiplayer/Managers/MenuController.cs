@@ -37,7 +37,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
         noRooms.SetActive(false);
 
-        UsernameDisplay.text = PlayerPrefs.GetString("Username", "");
+        //UsernameDisplay.text = PlayerPrefs.GetString("Username", "");
         TitleDisplay.text = PlayerPrefs.GetString("Title", "");
 
         if (PlayerPrefs.GetString("Username", "") == "")

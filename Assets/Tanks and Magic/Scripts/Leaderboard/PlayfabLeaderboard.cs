@@ -21,6 +21,13 @@ public class PlayfabLeaderboard : MonoBehaviour
     private void OnEnable()
     {
         LeaderboardStatisticName = "MainLeaderboard";
+
+        PlayerPrefs.SetInt("Kills", 10);
+
+        if (PlayerPrefs.GetInt("Kills", 0) > 0)
+        {
+            SubmitScore(PlayerPrefs.GetInt("Kills", 0));
+        }
     }
 
     public void SetLeaderboard()
@@ -135,7 +142,7 @@ public class PlayfabLeaderboard : MonoBehaviour
         SetLoading(false);
     }
 
-    public static void SubmitScore(string name, int score)
+    public static void SubmitScore(int score)
     {
         UpdatePlayerStatisticsRequest request = new UpdatePlayerStatisticsRequest
         {
