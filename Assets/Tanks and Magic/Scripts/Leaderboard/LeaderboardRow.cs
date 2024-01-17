@@ -22,6 +22,7 @@ public class LeaderboardRow : MonoBehaviour
         {
             Color _orange = new Color(1.0f, 0.64f, 0.0f);
             GetComponent<Image>().color = _orange;
+            scoreText.color = Color.white;
         }
     }
 }

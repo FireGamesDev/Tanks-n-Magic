@@ -16,8 +16,8 @@ public class Skin : MonoBehaviour
     //limits
     private int pink = 10;
     private int blue = 50;
-    private int orange = 100;
-    private int yellow = 200;
+    private int orange = 125;
+    private int yellow = 300;
     private int white = 1000;
 
     //materials
