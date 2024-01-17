@@ -22,8 +22,6 @@ public class PlayfabLeaderboard : MonoBehaviour
     {
         LeaderboardStatisticName = "MainLeaderboard";
 
-        PlayerPrefs.SetInt("Kills", 10);
-
         if (PlayerPrefs.GetInt("Kills", 0) > 0)
         {
             SubmitScore(PlayerPrefs.GetInt("Kills", 0));
