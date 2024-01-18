@@ -129,17 +129,19 @@ namespace LevDev
 
             float speedTransitionRate = 0.5f;
 
-            if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse1))
+            if(!isMobile)
             {
-                // Transition to the shoot speed
-                tankSpeed = Mathf.Lerp(tankSpeed, tankSpeedShoot, Time.deltaTime * speedTransitionRate);
+                if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse1))
+                {
+                    // Transition to the shoot speed
+                    tankSpeed = Mathf.Lerp(tankSpeed, tankSpeedShoot, Time.deltaTime * speedTransitionRate);
+                }
+                else
+                {
+                    // Transition back to the base speed
+                    tankSpeed = Mathf.Lerp(tankSpeed, tankSpeedBase, Time.deltaTime * speedTransitionRate);
+                }
             }
-            else
-            {
-                // Transition back to the base speed
-                tankSpeed = Mathf.Lerp(tankSpeed, tankSpeedBase, Time.deltaTime * speedTransitionRate);
-            }
-
 
             if (photonView.IsMine)
             {
@@ -301,8 +303,6 @@ namespace LevDev
                 var normalizedMovement = movement.normalized;
                 rb.velocity = normalizedMovement * tankSpeed;
 
-                Debug.LogError(rb.velocity.ToString());
-
                 if (movement == Vector3.zero)
                 {
                     LightsOff();
@@ -329,7 +329,7 @@ namespace LevDev
             if (isMobile)
             {
                 Vector3 turretLookDir = Vector3.zero;
-                turretLookDir.x = _shootingJoystick.Vertical;
+                turretLookDir.x = -_shootingJoystick.Vertical;
                 turretLookDir.z = _shootingJoystick.Horizontal;
 
                 finalTurretLookDir = Vector3.Lerp(finalTurretLookDir, turretLookDir, Time.deltaTime * turretLagSpeed);

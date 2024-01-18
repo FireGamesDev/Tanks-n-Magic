@@ -20,7 +20,7 @@ public class CheckMobile : MonoBehaviour
     }
 
     [DllImport("__Internal")]
-    private static extern void isMobileWebGL();
+    private static extern bool isMobileWebGL();
 
     private bool CheckIfWebGLIsMobile()
     {

@@ -103,11 +103,18 @@ namespace TankScripts
                     return;
                 }
 
+                if (GameObject.Find("ChargeBullet") == null)
+                {
+                    chargedBulletCooldown = GameObject.Find("ChargeBulletButton").GetComponent<UnityEngine.UI.Image>();
+                }
+                else
+                {
+                    chargedBulletCooldown = GameObject.Find("ChargeBullet").GetComponent<UnityEngine.UI.Image>();
+                }
                 if (chargedBulletCooldown)
                 {
                     chargedBulletCooldown.fillAmount = coolDown / coolDown - shootCooldown / coolDown;
                 }
-                else chargedBulletCooldown = GameObject.Find("ChargeBullet").GetComponent<UnityEngine.UI.Image>();
 
                 if (shootCooldown <= 0 || anotherShoot)
                 {
