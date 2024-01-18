@@ -189,7 +189,6 @@ namespace LevDev
             if (isMobile)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(rb.velocity);
-                Debug.LogError(targetRotation);
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, tankRotationSpeed * Time.deltaTime));
             }
 
@@ -294,9 +293,15 @@ namespace LevDev
                 movement.x = _movementJoystick.Vertical;
                 movement.z = -_movementJoystick.Horizontal;
 
+                if (gameObject.tag == "GreenTank")
+                {
+                    movement *= -1;
+                }
+
                 var normalizedMovement = movement.normalized;
-                var speed = tankSpeed * 2;
-                rb.MovePosition(transform.position - normalizedMovement * speed * Time.deltaTime);
+                rb.velocity = normalizedMovement * tankSpeed;
+
+                Debug.LogError(rb.velocity.ToString());
 
                 if (movement == Vector3.zero)
                 {
