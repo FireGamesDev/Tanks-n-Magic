@@ -32,8 +32,9 @@ public class CheckMobile : MonoBehaviour
 
     private void Start()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
         IsMobile = CheckIfWebGLIsMobile();
-
+#endif
         chat.SetActive(!IsMobile);
         chargedBulletDisplay.SetActive(!IsMobile);
         chargedBulletButton.gameObject.SetActive(IsMobile);

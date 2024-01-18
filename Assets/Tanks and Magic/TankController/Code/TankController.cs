@@ -110,7 +110,6 @@ namespace LevDev
                     movement.z = Input.GetAxis("Horizontal");
                     movement.x = Input.GetAxis("Vertical");
                 }
-                
             }
             EngineAudio();
         }
@@ -151,24 +150,20 @@ namespace LevDev
 
                 Move();
 
-                Vector2 rotation = Vector2.zero;
-
                 if (isMobile)
                 {
-                    rotation = _shootingJoystick.Direction.normalized;
-
-                    if (rotation.x == 0 && rotation.y == 0)
-                    {
-                        rotation = _movementJoystick.Direction.normalized;
-                    }
+                    Turn();
                 }
-
-                if (gameObject.tag == "GreenTank")
+                else
                 {
-                    TurnGreen(rotation);
-                } else
-                {
-                    Turn(rotation);
+                    if (gameObject.tag == "GreenTank")
+                    {
+                        TurnGreen();
+                    }
+                    else
+                    {
+                        Turn();
+                    }
                 }
             }
         }
@@ -189,11 +184,13 @@ namespace LevDev
 
         #region Multiplayer synch
 
-        private void Turn(Vector2 rotation)
+        private void Turn()
         {
             if (isMobile)
             {
-                rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation.x, rotation.y, 0f), tankRotationSpeed * Time.deltaTime));
+                Quaternion targetRotation = Quaternion.LookRotation(rb.velocity);
+                Debug.LogError(targetRotation);
+                rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, tankRotationSpeed * Time.deltaTime));
             }
 
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
@@ -242,13 +239,8 @@ namespace LevDev
             }
         }
 
-        private void TurnGreen(Vector2 rotation)
+        private void TurnGreen()
         {
-            if (isMobile)
-            {
-                rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotation.x, rotation.y, 0f), tankRotationSpeed * Time.deltaTime));
-            }
-
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
             {
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.Euler(0f, -45f, 0f), tankRotationSpeed * Time.deltaTime));
@@ -299,14 +291,21 @@ namespace LevDev
         {
             if (isMobile)
             {
-                movement = _movementJoystick.Direction;
-                Vector3 normalizedMovement = movement.normalized;
-                rb.MovePosition(transform.position - normalizedMovement * tankSpeed * Time.deltaTime);
+                movement.x = _movementJoystick.Vertical;
+                movement.z = -_movementJoystick.Horizontal;
+
+                var normalizedMovement = movement.normalized;
+                var speed = tankSpeed * 2;
+                rb.MovePosition(transform.position - normalizedMovement * speed * Time.deltaTime);
 
                 if (movement == Vector3.zero)
                 {
                     LightsOff();
-                } else LightsOn();
+                }
+                else
+                {
+                    LightsOn();
+                }
 
                 return;
             }
@@ -324,12 +323,13 @@ namespace LevDev
         {
             if (isMobile)
             {
-                Vector3 turretLookDir = _shootingJoystick.Direction;
-                turretLookDir.y = 0f;
+                Vector3 turretLookDir = Vector3.zero;
+                turretLookDir.x = _shootingJoystick.Vertical;
+                turretLookDir.z = _shootingJoystick.Horizontal;
 
                 finalTurretLookDir = Vector3.Lerp(finalTurretLookDir, turretLookDir, Time.deltaTime * turretLagSpeed);
-                turretTransform.rotation = Quaternion.LookRotation(finalTurretLookDir);
 
+                turretTransform.rotation = Quaternion.LookRotation(finalTurretLookDir);
                 return;
             }
 

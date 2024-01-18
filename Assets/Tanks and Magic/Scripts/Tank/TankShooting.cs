@@ -138,17 +138,6 @@ namespace TankScripts
                         shootCooldown = coolDown;
                         anotherShoot = true;
                     }
-                    if (canShoot && anotherShoot && shootCooldown <= coolDown - 0.1f)
-                    {
-                        if (reticleAnim)
-                        {
-                            reticleAnim.SetTrigger("DoubleShoot");
-                        }
-                        Fire(true);
-                        m_ShootingAudio.PlayOneShot(shootSFX);
-                        shootCooldown = coolDown;
-                        anotherShoot = false;
-                    }
                 }
 
                 return;
@@ -156,22 +145,35 @@ namespace TankScripts
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (canShoot && shootCooldown <= 0)
+                bool shootAgain = anotherShoot && shootCooldown <= coolDown - 0.1f;
+                if (canShoot && shootCooldown <= 0 || shootAgain)
                 {
                     if (reticleAnim)
                     {
-                        reticleAnim.SetTrigger("isShooting");
+                        if (!(canShoot && shootCooldown <= 0))
+                        {
+                            reticleAnim.SetTrigger("DoubleShoot");
+                        }
+                        else
+                        {
+                            reticleAnim.SetTrigger("isShooting");
+                        }
                     }
                     Fire(true);
                     m_ShootingAudio.PlayOneShot(shootSFX);
                     shootCooldown = coolDown;
                     anotherShoot = true;
+
+                    if (shootAgain)
+                    {
+                        anotherShoot = false;
+                    }
                 }
                 if (canShoot && anotherShoot && shootCooldown <= coolDown - 0.1f)
                 {
                     if (reticleAnim)
                     {
-                        reticleAnim.SetTrigger("DoubleShoot");
+                        
                     }
                     Fire(true);
                     m_ShootingAudio.PlayOneShot(shootSFX);
@@ -180,6 +182,7 @@ namespace TankScripts
                 }
             }
 
+            /*
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 if (canShoot && shootCooldown <= 0)
@@ -205,7 +208,7 @@ namespace TankScripts
                     anotherShoot = false;
                 }
             }
-
+            */
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 ShootChargedShot();
