@@ -18,7 +18,7 @@ namespace Scripts.Managers.UI {
         private void UpdatePingUI()
         {
             int ping = PhotonNetwork.GetPing();
-            _text.text = ping.ToString() + " ms";
+            _text.text = ping.ToString() + " ms " + PhotonNetwork.CloudRegion;
 
             UpdatePingSquares(ping);
         }

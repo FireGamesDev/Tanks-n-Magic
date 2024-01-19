@@ -8,11 +8,11 @@ public class MenuController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject UsernameMenu = null;
 
-    [SerializeField] private TMPro.TMP_InputField UsernameInput = null;
+    [SerializeField] private UnityEngine.UI.InputField UsernameInput = null;
     [SerializeField] private TMPro.TMP_Text UsernameDisplay = null;
     [SerializeField] public TMPro.TMP_Text TitleDisplay = null;
     [SerializeField] private GameObject errorTextUsername = null;
-    [SerializeField] private TMPro.TMP_InputField CreateGameInput = null;
+    [SerializeField] private UnityEngine.UI.InputField CreateGameInput = null;
 
     [SerializeField] private GameObject StartButton = null;
     [SerializeField] private GameObject errorText = null;

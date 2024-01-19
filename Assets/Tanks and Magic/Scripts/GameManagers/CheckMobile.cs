@@ -22,12 +22,12 @@ public class CheckMobile : MonoBehaviour
     [DllImport("__Internal")]
     private static extern bool isMobileWebGL();
 
-    private bool CheckIfWebGLIsMobile()
+    public bool CheckIfWebGLIsMobile()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         return isMobileWebGL();
 #endif
-        return false;
+        return IsMobile;
     }
 
     private void Start()

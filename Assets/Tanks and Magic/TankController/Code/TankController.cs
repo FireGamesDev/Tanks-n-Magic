@@ -332,6 +332,11 @@ namespace LevDev
                 turretLookDir.x = -_shootingJoystick.Vertical;
                 turretLookDir.z = _shootingJoystick.Horizontal;
 
+                if (gameObject.tag != "GreenTank")
+                {
+                    turretLookDir *= -1;
+                }
+
                 finalTurretLookDir = Vector3.Lerp(finalTurretLookDir, turretLookDir, Time.deltaTime * turretLagSpeed);
 
                 turretTransform.rotation = Quaternion.LookRotation(finalTurretLookDir);

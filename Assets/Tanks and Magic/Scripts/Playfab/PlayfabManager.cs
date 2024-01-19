@@ -8,7 +8,7 @@ using TMPro;
 public class PlayfabManager : MonoBehaviour
 {
     [SerializeField] private GameObject usernameScreen;
-    [SerializeField] private TMP_InputField UserNameInput;
+    [SerializeField] private UnityEngine.UI.InputField UserNameInput;
     [SerializeField] private TMP_Text errorText;
     [SerializeField] private TMP_Text UsernameDisplay;
 
@@ -20,6 +20,7 @@ public class PlayfabManager : MonoBehaviour
             if (PlayerPrefs.GetString("Username", "") != "")
             {
                 string currentPlayerName = PlayerPrefs.GetString("Username", "");
+                print(currentPlayerName);
                 Login(currentPlayerName);
             }
             else
@@ -32,10 +33,11 @@ public class PlayfabManager : MonoBehaviour
     #region Login
     public void Login(string username)
     {
+        
         LoginWithCustomIDRequest request = new LoginWithCustomIDRequest
         {
             CustomId = username,
-            CreateAccount = true, // Create a new account if it doesn't exist
+            CreateAccount = true,
         };
 
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
@@ -125,7 +127,11 @@ public class PlayfabManager : MonoBehaviour
         print("registered");
         //messageText.text = ("Logged In!");
 
-        UpdateDisplayName(UserNameInput.text);
+        if (PlayerPrefs.GetString("Username", "Guest") != "Guest")
+        {
+            // Set the display name after successful login
+            PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), OnGetUsernameResult, OnApiCallError);
+        }
     }
 
     private void OnRegisterFailure(PlayFabError error)

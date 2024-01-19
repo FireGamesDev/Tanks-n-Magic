@@ -41,11 +41,14 @@ namespace Settings
             SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 0));
             SetSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 0));
 
-            Screen.SetResolution(
+            if (!CheckMobile.Instance.CheckIfWebGLIsMobile())
+            {
+                Screen.SetResolution(
                 selectedResolution.width,
                 selectedResolution.height,
-                Screen.fullScreen
+                true
             );
+            }
         }
 
         private void CreateResolutionDropdown()
@@ -70,7 +73,14 @@ namespace Settings
         public void SetResolution(int resolutionIndex)
         {
             selectedResolution = resolutions[resolutionIndex];
-            Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
+            if (!CheckMobile.Instance.CheckIfWebGLIsMobile())
+            {
+                Screen.SetResolution(
+                selectedResolution.width,
+                selectedResolution.height,
+                true
+            );
+            }
             PlayerPrefs.SetInt(resolutionWidthPlayerPrefKey, selectedResolution.width);
             PlayerPrefs.SetInt(resolutionHeightPlayerPrefKey, selectedResolution.height);
         }
