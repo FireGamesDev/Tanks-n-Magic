@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 namespace TankScripts
 {
@@ -58,8 +60,6 @@ namespace TankScripts
 
             isMobile = CheckMobile.IsMobile;
 
-            CheckMobile.Instance.chargedBulletButton.onClick.AddListener(delegate { ShootChargedShot(); });
-
             canShoot = true;
             shootCooldown = coolDown;
             anotherShoot = false;
@@ -111,6 +111,7 @@ namespace TankScripts
                 {
                     chargedBulletCooldown = GameObject.Find("ChargeBullet").GetComponent<UnityEngine.UI.Image>();
                 }
+
                 if (chargedBulletCooldown)
                 {
                     chargedBulletCooldown.fillAmount = coolDown / coolDown - shootCooldown / coolDown;
@@ -241,7 +242,7 @@ namespace TankScripts
                 {
                     if (muzzleFlash)
                     {
-                        muzzleFlash.Play();
+                        //muzzleFlash.Play();
                     }
 
                     bullet = PhotonNetwork.Instantiate(m_Shell.name, m_FireTransform.position, m_FireTransform.rotation, 0);
@@ -251,7 +252,7 @@ namespace TankScripts
                 {
                     if (muzzleFlashRed)
                     {
-                        muzzleFlashRed.Play();
+                        //muzzleFlashRed.Play();
                     }
                     bullet = PhotonNetwork.Instantiate(m_BotShell.name, m_FireTransform.position, m_FireTransform.rotation, 0);
                     StartCoroutine(DestroyBulletAfterTime(bullet, lifeTime - 1f));
@@ -320,10 +321,47 @@ namespace TankScripts
 
         public void SetTowerHitted()
         {
-            if(reticleAnim1 != null && reticleAnim1.runtimeAnimatorController != null && reticleAnim1.isActiveAndEnabled)
+            if (reticleAnim1 != null && reticleAnim1.runtimeAnimatorController != null && reticleAnim1.isActiveAndEnabled)
             {
                 reticleAnim1.SetTrigger("DoubleShoot");
             }
+        }
+
+        private void LoadChargedButton()
+        {
+            if (CheckMobile.IsMobile)
+            {
+                if (GameObject.Find("ChargeBulletButton") != null)
+                {
+                    chargedBulletCooldown = GameObject.Find("ChargeBulletButton").GetComponent<UnityEngine.UI.Image>();
+
+                    UnityEngine.UI.Button btn = GameObject.Find("ChargeBulletButton").GetComponent<UnityEngine.UI.Button>();
+
+                    btn.onClick.RemoveAllListeners();
+                    btn.onClick.AddListener(delegate { ShootChargedShot(); });
+                }
+            }
+            else
+            {
+                chargedBulletCooldown = GameObject.Find("ChargeBullet").GetComponent<UnityEngine.UI.Image>();
+            }
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+            LoadChargedButton();
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            LoadChargedButton();
+        }
+
+        void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }

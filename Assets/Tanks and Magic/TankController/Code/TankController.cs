@@ -339,7 +339,12 @@ namespace LevDev
 
                 finalTurretLookDir = Vector3.Lerp(finalTurretLookDir, turretLookDir, Time.deltaTime * turretLagSpeed);
 
-                turretTransform.rotation = Quaternion.LookRotation(finalTurretLookDir);
+                bool noInput = _shootingJoystick.Vertical == 0 && _shootingJoystick.Horizontal == 0;
+                if (!noInput)
+                {
+                    turretTransform.rotation = Quaternion.LookRotation(finalTurretLookDir);
+                }
+                
                 return;
             }
 

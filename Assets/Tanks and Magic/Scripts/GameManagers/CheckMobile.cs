@@ -14,11 +14,6 @@ public class CheckMobile : MonoBehaviour
     [SerializeField] private GameObject chat;
     public Button chargedBulletButton;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     [DllImport("__Internal")]
     private static extern bool isMobileWebGL();
 
@@ -32,11 +27,17 @@ public class CheckMobile : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
+
 #if !UNITY_EDITOR && UNITY_WEBGL
         IsMobile = CheckIfWebGLIsMobile();
 #endif
-        chat.SetActive(!IsMobile);
-        chargedBulletDisplay.SetActive(!IsMobile);
-        chargedBulletButton.gameObject.SetActive(IsMobile);
+        if (chat != null)
+        {
+            chat.SetActive(!IsMobile);
+            chargedBulletDisplay.SetActive(!IsMobile);
+            chargedBulletButton.gameObject.SetActive(IsMobile);
+        }
+        
     }
 }
