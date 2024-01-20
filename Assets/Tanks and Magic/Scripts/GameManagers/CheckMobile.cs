@@ -20,7 +20,7 @@ public class CheckMobile : MonoBehaviour
     public bool CheckIfWebGLIsMobile()
     {
 #if !UNITY_EDITOR && UNITY_STANDALONE_WIN
-        return true;
+        return false;
 #endif
 #if !UNITY_EDITOR && UNITY_ANDROID
         return true;
@@ -35,9 +35,8 @@ public class CheckMobile : MonoBehaviour
     {
         Instance = this;
 
-#if !UNITY_EDITOR && UNITY_WEBGL
         IsMobile = CheckIfWebGLIsMobile();
-#endif
+
         if (chat != null)
         {
             chat.SetActive(!IsMobile);

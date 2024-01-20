@@ -54,7 +54,6 @@ namespace LevDev
         [SerializeField] private VariableJoystick _movementJoystick;
         [SerializeField] private VariableJoystick _shootingJoystick;
 
-        private bool isMobile = false;
         #endregion
 
 
@@ -65,10 +64,8 @@ namespace LevDev
             rb = GetComponent<Rigidbody>();
             input = GetComponent<TankInputs>();
 
-            isMobile = CheckMobile.IsMobile;
-
-            _movementJoystick.gameObject.SetActive(isMobile);
-            _shootingJoystick.gameObject.SetActive(isMobile);
+            _movementJoystick.gameObject.SetActive(CheckMobile.IsMobile);
+            _shootingJoystick.gameObject.SetActive(CheckMobile.IsMobile);
         }
 
         private void Start()
@@ -89,7 +86,7 @@ namespace LevDev
 
             LightsOn();
 
-            reticleTransform.gameObject.SetActive(!isMobile);
+            reticleTransform.gameObject.SetActive(!CheckMobile.IsMobile);
         }
 
         private void Update()
@@ -129,7 +126,7 @@ namespace LevDev
 
             float speedTransitionRate = 0.5f;
 
-            if(!isMobile)
+            if(!CheckMobile.IsMobile)
             {
                 if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Mouse1))
                 {
@@ -152,7 +149,7 @@ namespace LevDev
 
                 Move();
 
-                if (isMobile)
+                if (CheckMobile.IsMobile)
                 {
                     Turn();
                 }
@@ -188,7 +185,7 @@ namespace LevDev
 
         private void Turn()
         {
-            if (isMobile)
+            if (CheckMobile.IsMobile)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(rb.velocity);
                 rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, tankRotationSpeed * Time.deltaTime));
@@ -290,7 +287,7 @@ namespace LevDev
 
         private void Move()
         {
-            if (isMobile)
+            if (CheckMobile.IsMobile)
             {
                 movement.x = _movementJoystick.Vertical;
                 movement.z = -_movementJoystick.Horizontal;
@@ -326,7 +323,7 @@ namespace LevDev
 
         private void HandleTurret()
         {
-            if (isMobile)
+            if (CheckMobile.IsMobile)
             {
                 Vector3 turretLookDir = Vector3.zero;
                 turretLookDir.x = -_shootingJoystick.Vertical;
