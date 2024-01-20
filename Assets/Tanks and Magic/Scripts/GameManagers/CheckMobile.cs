@@ -19,6 +19,12 @@ public class CheckMobile : MonoBehaviour
 
     public bool CheckIfWebGLIsMobile()
     {
+#if !UNITY_EDITOR && UNITY_STANDALONE_WIN
+        return true;
+#endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+        return true;
+#endif
 #if !UNITY_EDITOR && UNITY_WEBGL
         return isMobileWebGL();
 #endif

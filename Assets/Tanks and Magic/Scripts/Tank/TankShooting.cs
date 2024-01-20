@@ -47,8 +47,6 @@ namespace TankScripts
         [Header("Mobile")]
         [SerializeField] private VariableJoystick _shootingJoystick;
 
-        private bool isMobile = false;
-
         private UnityEngine.UI.Image chargedBulletCooldown;
 
         private void Start()
@@ -57,8 +55,6 @@ namespace TankScripts
             {
                 return;
             }
-
-            isMobile = CheckMobile.IsMobile;
 
             canShoot = true;
             shootCooldown = coolDown;
@@ -131,7 +127,7 @@ namespace TankScripts
 
         private void HandleInputs()
         {
-            if (isMobile)
+            if (CheckMobile.IsMobile)
             {
                 if (_shootingJoystick.Direction != Vector2.zero)
                 {
